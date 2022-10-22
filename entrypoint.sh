@@ -82,6 +82,9 @@ main() {
     fi
     echo "Found netlify.toml"
     
+    # Patch zola
+    find __obsidian
+
     export VAULT="../__obsidian"
     echo "Vault path: $VAULT"
     
