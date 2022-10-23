@@ -92,6 +92,12 @@ main() {
     source env.sh && rm env.sh
     cd ..
     
+    # Execute user's script before zola, if any
+    if [ -x .scripts/pre-zola ]; then
+        echo "Pre zola script found"
+        ./.scripts/pre-zola
+    fi
+
     # Do the things from run.sh
     echo "Moving zola to build"
     rsync -a __site/zola/ __site/build
@@ -116,6 +122,12 @@ main() {
     if [ -f __obsidian/CNAME ]; then
         echo "Found a CNAME record copying"
 	cp  __obsidian/CNAME public/
+    fi
+
+    # Execute user's script after zola, if any
+    if [ -x .scripts/post-zola ]; then
+        echo "Post zola script found"
+        ./.scripts/post-zola
     fi
 
     # If set to build only as a non-deployment test stop, otherwise push to gh-pages branch
