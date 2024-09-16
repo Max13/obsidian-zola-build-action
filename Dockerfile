@@ -1,4 +1,4 @@
-from debian:stable-slim
+from debian:bullseye-slim
 MAINTAINER Trent Walraven <obsidian-zola@trwbox.com>
 
 LABEL "com.github.actions.name"="Obsidian-Zola build to Github Pages"
